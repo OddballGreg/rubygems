@@ -255,6 +255,8 @@ module Bundler
     # @return [SpecSet] resolved dependencies
     def resolve
       @resolve ||= begin
+        # require 'pry'
+        # binding.pry
         last_resolve = converge_locked_specs
         if Bundler.frozen_bundle?
           Bundler.ui.debug "Frozen, using resolution from the lockfile"
@@ -266,6 +268,8 @@ module Bundler
           # Run a resolve against the locally available gems
           Bundler.ui.debug("Found changes from the lockfile, re-resolving dependencies because #{change_reason}")
           expanded_dependencies = expand_dependencies(dependencies + metadata_dependencies, @remote)
+          # require 'pry'
+          # binding.pry
           Resolver.resolve(expanded_dependencies, source_requirements, last_resolve, gem_version_promoter, additional_base_requirements_for_resolve, platforms)
         end
       end
@@ -794,6 +798,8 @@ module Bundler
       end
       source_requirements[:default_bundler] = source_requirements["bundler"] || sources.default_source
       source_requirements["bundler"] = sources.metadata_source # needs to come last to override
+      # require 'pry'
+      # binding.pry
       source_requirements
     end
 

@@ -137,6 +137,9 @@ module Bundler
         @use_api = false if fetchers.none?(&:api_fetcher?)
       end
 
+      # require 'pry'
+      # binding.pry
+      
       specs.each do |name, version, platform, dependencies, metadata|
         spec = if dependencies
           EndpointSpecification.new(name, version, platform, dependencies, metadata)
